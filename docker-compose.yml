@@ -1,0 +1,31 @@
+services:
+  api:
+    build: ./backend
+    image: mini-gauntlet-api:local
+    ports:
+      - "8000:8000"
+    environment:
+      INVENTORY_PATH: /app/data/inventory.json
+      DATABASE_URL: sqlite:////app/var/mini_gauntlet.db
+      SCAN_WORKERS: "4"
+      CORS_ORIGINS: http://localhost:3000,http://127.0.0.1:3000
+    volumes:
+      - ./data:/app/data:ro          # the snapshot, read-only
+      - api-data:/app/var            # SQLite file survives restarts
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:8000
+    image: mini-gauntlet-web:local
+    ports:
+      - "3000:3000"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  api-data:
