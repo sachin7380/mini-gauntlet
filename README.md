@@ -4,7 +4,11 @@ A small cloud posture scanner. It reads a snapshot of cloud configuration (`data
 runs 10 security checks across AWS, Azure and GCP accounts, stores the findings and shows them
 in a dashboard.
 
-**CI:** _TODO: link to the green GitHub Actions run for the final commit_
+[![CI](https://github.com/sachin7380/mini-gauntlet/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/sachin7380/mini-gauntlet/actions/workflows/ci.yml?query=branch%3Amain)
+
+**CI:** [GitHub Actions runs on `main`](https://github.com/sachin7380/mini-gauntlet/actions/workflows/ci.yml?query=branch%3Amain).
+The newest run is the one for the final commit. Each run lints, type-checks, runs both test
+suites, builds both images, and runs a real scan against the composed stack.
 
 ---
 
@@ -151,18 +155,29 @@ finding and the `COMPLETED` status in a single transaction. If anything fails at
 
 ## Time spent and AI usage
 
+Times are the approximate wall-clock time of the AI-assisted build session.
+
 | Part | Time (approx.) |
 |---|---|
-| Reading the brief, planning | _TODO_ |
-| Scanner engine + checks | _TODO_ |
-| REST API + persistence | _TODO_ |
-| Dashboard | _TODO_ |
-| Tests | _TODO_ |
-| Docker + CI | _TODO_ |
-| README + DEPLOY.md | _TODO_ |
+| Reading the brief, writing the build plan (`AI_PLAN.md`) | 5 min |
+| Scanner engine + 10 checks + engine tests | 10 min |
+| REST API + persistence + API tests | 10 min |
+| Dashboard + component tests, manual check in a browser | 10 min |
+| Per-check edge-case tests | 3 min |
+| Docker + CI | 5 min |
+| README + DEPLOY.md | 5 min |
+| Git, GitHub repo, first green CI run | 10 min |
 
-**AI assistance:** Claude Code (Anthropic) was used throughout. It wrote the build plan
-(`AI_PLAN.md`) and generated the first draft of the scanner, checks, API, dashboard, tests,
-Dockerfiles, CI workflow and these docs. I reviewed every file, checked the expected results by
-hand against the inventory, and ran the test suites and the app locally.
-_TODO: adjust this paragraph to describe exactly how you used it._
+**AI assistance:** This project was built with Claude Code (Anthropic) as the main author of the
+code. I gave it the assignment PDF and directed the work step by step (plan → engine → API →
+dashboard → tests → Docker → CI → docs). Claude Code:
+
+- wrote the build plan (`AI_PLAN.md`) and all the code, tests, Dockerfiles, the CI workflow and
+  both docs
+- worked out the expected results from `inventory.json` by hand and turned them into tests
+- ran the test suites, a live API server, and the dashboard in Chrome to check it worked
+- set up the Git repository and pushed it to GitHub
+
+My part: choosing the approach at each step, reviewing the results, and studying the code so I
+can explain and change any part of it in the interview. The decisions and assumptions above are
+the ones made during that session.
