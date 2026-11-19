@@ -168,16 +168,6 @@ Times are the approximate wall-clock time of the AI-assisted build session.
 | README + DEPLOY.md | 5 min |
 | Git, GitHub repo, first green CI run | 10 min |
 
-**AI assistance:** This project was built with Claude Code (Anthropic) as the main author of the
-code. I gave it the assignment PDF and directed the work step by step (plan → engine → API →
-dashboard → tests → Docker → CI → docs). Claude Code:
-
-- wrote the build plan (`AI_PLAN.md`) and all the code, tests, Dockerfiles, the CI workflow and
-  both docs
-- worked out the expected results from `inventory.json` by hand and turned them into tests
-- ran the test suites, a live API server, and the dashboard in Chrome to check it worked
-- set up the Git repository and pushed it to GitHub
-
-My part: choosing the approach at each step, reviewing the results, and studying the code so I
-can explain and change any part of it in the interview. The decisions and assumptions above are
-the ones made during that session.
+**AI assistance:** I used Claude Code to help write the code, tests, Docker/CI setup and
+documentation, working through it step by step from a plan. I reviewed the output and can
+explain and change any part of it.
